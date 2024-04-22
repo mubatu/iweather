@@ -1,3 +1,10 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   /* Colors */
   --bluelight: #8FB2F5;
@@ -10,7 +17,12 @@
   --gray300: #ABABC4; 
   --gray200: #BFBFD4; 
   --gray100: #FAFAFA; 
-  --white: #FFFFFF;
+  --white: hsl(0, 0%, 100%);
+  --white-alpha-4: hsla(0, 0%, 100%, 0.04);
+  --white-alpha-8: hsla(0, 0%, 100%, 0.08);
+  --black-alpha-10: hsla(0, 0%, 0%, 0.1);
+  --gradient-1: linear-gradient(180deg, hsla(270, 5%, 7%, 0) 0%, hsla(270, 5%, 7%, 0.8) 65%, hsl(270, 5%, 7%) 100%);
+  --gradient-2: linear-gradient(180deg, hsla(260, 5%, 12%, 0) 0%, hsla(260, 5%, 12%, 0.8) 65%, hsl(260, 5%, 12%) 100%);
 
   /* Font */
   --ff-nunito-sans: 'Nunito Sans', sans-serif;
@@ -43,7 +55,9 @@
 }
 
 *,
-*::before
+*::before {
+
+}
 *::after {
   margin: 0;
   padding: 0;
@@ -81,7 +95,7 @@ button {cursor: pointer;}
 
 sub {vertical-align: baseline;}
 sub {vertical-align: top;}
-sub, sup {font-size: 0.75em;}
+sub, sup {font-size: 0.7em;}
 
 html {
   font-family: var(--ff-nunito-sans);
@@ -91,9 +105,9 @@ html {
 
 body {
   background-color: #13131A;
-  color: #8FB2F5;
+  color: #FAFAFA;
   font-size: var(--body-3);
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 :focus-visible {
@@ -111,4 +125,419 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #16161F;
   border-radius: var(--radius-pill);
+}
+
+.container {
+  max-width: 1600px; /*1600px*/
+  width: 100%;
+  margin-inline: auto;
+  padding: 16px;
+  
+}
+
+.icon-btn { /*Büyüteç butonu*/
+  background-color: #3B3B54; /*white-alpha-8*/
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-circle);
+}
+
+.has-state {position: relative;}
+
+.has-state:hover {
+  /*background-color: #8FB2F5;*/
+  box-shadow: var(--shadow-1);
+}
+
+.has-state:is(:focus, :focus-visible) {box-shadow: none;}
+
+.has-state::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  clip-path: circle(100% at 50% 50%);
+  transition: var(--transition-short);
+}
+
+.has-state:hover::before {
+  background-color: --white-alpha-4;
+  opacity: 0.5;
+}
+
+.has-state:is(:focus, :focus-visible)::before {
+  background-color: --white-alpha-8;
+  animation: ripple 500ms ease forwards;
+}
+@keyframes ripple {
+  0% {clip-path: circle(0% at 50% 50%)}
+  100% {clip-path: circle(100% at 50% 50%)}
+}
+
+.btn-primary { /*Current Location butonu*/
+  background-color: #22222F;
+  color: #ABABC4;
+  height: 38px;
+  line-height: 48px;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 16px;
+  border-radius: var(--radius-pill);
+  
+}
+
+.btn-primary .span {
+  font-weight: var(--weight-semiBold);
+} /*Current Location yazısı*/
+
+.btn-primary[disabled] {
+  background-color: #3B3B54;
+  color: #ABABC4;
+  cursor: not-allowed;
+}
+
+.btn-primary[disabled]::before {display: none;}
+
+.card {
+  background-color: #1C1C27;
+  color: #FAFAFA;
+}
+
+.card-lg {
+  border-radius: var(--radius-28);
+  padding: 20px;
+}
+
+.card-sm {
+  border-radius: var(--radius-16);
+  padding: 16px;
+}
+
+.heading {
+  color: var(--white);
+  font-size: var(--heading);
+  line-height: 1.1; /*1.1*/
+}
+
+.title-1 {
+  font-size: var(--title-1);
+}
+
+.title-2 {
+  font-size: var(--title-2);
+  margin-block-end: 12px,;
+}
+
+.title-3 {
+  font-size: var(--title-3);
+  font-weight: var(--weight-semiBold);
+}
+
+.body-1 {
+  font-size: var(--body-1);
+}
+
+.body-2 {
+  font-size: var(--body-2);
+  font-weight: var(--weight-semiBold);
+}
+
+.body-3 {
+  font-size: var(--body-3);
+}
+
+.label-1 {
+  font-size: var(--label-1);
+  font-weight: 400;
+}
+
+.label-2 {
+  font-size: var(--label-2);
+}
+
+
+
+
+.header .btn-primary .span { /*Current Location yazısını gizler*/
+  display: none;
+}
+
+.header .container,
+.header-actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column; /*Biz ekledik*/
+}
+
+.header .container {
+  justify-content: space-between;
+}
+
+.header-actions { /*Büyüteç ve GPS arasındaki fark*/
+  /*padding-bottom: 20px;*/
+  gap: 16px;
+}
+
+.header .btn-primary {padding-inline: 12px;}
+
+.search-view {
+  padding-bottom: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh; /* for Mobile */
+  background-color: #13131A;
+  color: #FAFAFA;
+  clip-path: circle(4% at calc(100% - 102px) 5%);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 4;
+  transition: clip-path 500ms ease;
+}
+
+.search-view.active {
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(130% at 73% 5%);
+}
+
+.search-wrapper {
+  position: relative;
+  border-block-end: 3px solid #3B3B54
+}
+.search-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  border: 4px solid #8FB2F5;
+  border-block-start-color: transparent;
+  border-radius: var(--radius-circle);
+  animation: loading 1000ms linear infinite;
+  display: none;
+}
+@keyframes loading {
+  0% {transform: translateY(-50%) rotate(0);}
+  100% {transform: translateY(-50%) rotate(1turn);}
+}
+
+.search-wrapper:has(.searching)::before {display: block;}
+
+.search-field {
+  height: 80px;
+  line-height: 80px;
+  padding-inline: 56px 16px;
+  outline: none;
+}
+
+.search-field::placeholder {color: #FAFAFA}
+
+.search-field::-webkit-search-cancel-button {display: none;}
+
+.search-wrapper .leading-icon {
+  position: absolute;
+  top: 50%;
+  left: 28px;
+  transform: translate(-50%, -50%);
+}
+
+.search-wrapper .icon-btn {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.search-view .view-list {
+  padding-block: 0px, 16px;
+  background-color: #1C1C27 /*State of Istanbul kısmı*/
+}
+
+.search-view .view-item {
+  position: relative;
+  height: 90px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px 24px;
+}
+
+.search-view .view-item .item-subtitle {
+  color: #7F7F98;
+}
+
+.search-view .view-item .item-link {
+  position: absolute;
+  inset: 0;
+  box-shadow: none;
+}
+
+
+
+/* HEADER */
+
+.logo img {
+  width: 186px;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.great-title {
+  font-size: 20px;
+  font-weight: 700;
+  padding-top: 150px;
+  line-height: 3.2;
+}
+.first-word,
+.second-word {
+  display: inline;
+}
+.second-word {
+  color: #8FB2F5;
+}
+.small-title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 0;
+  margin-bottom: 30px;
+
+}
+
+/*MAIN*/
+
+main {
+  height: calc(100vh - 80px);
+  height: calc(100svh - 80px); /*for Mobile*/
+  /*overflow: hidden;*/ /*Biz kaldırdık*/
+}
+
+.article.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0,lfr);
+  gap: 20px;
+  height: 100%;
+  overflow-y: auto; /*for Firefox*/
+  overflow-y: overlay;
+}
+
+.article.container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.article.container:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
+  background-color: var(--white-alpha-8);
+}
+
+.article.container::-webkit-scrollbar-button {
+  height: 10px;
+}
+
+.article.container::before {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-image: var(--gradient-1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.section:not(:last-child) {
+  margin-block-end: 16px;
+}
+
+
+/*Current Weather*/
+
+main .section {
+  margin-bottom: 0;
+}
+
+
+.current-weather-card .weapper {
+  margin-block: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.current-weather-card .weather-icon {
+  margin-inline: auto;
+}
+
+.current-weather-card .meta-list {
+  margin-block-start: 16px;
+  padding-block-start: 16px;
+  border-block-start: 3px solid #3B3B54;
+}
+
+.current-weather-card .meta-item { /*Tarih ve Şehir*/
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.current-weather-card .meta-item:not(:last-child) { /*Tarihle şehir arasındaki fark*/
+  margin-block-end: 12px;
+}
+
+.current-weather-card .meta-text {
+  color: #FAFAFA;
+}
+
+/*Daily Forecast*/
+
+.forecast-card .title-2 {
+  margin-block-end: 0;
+}
+
+.forecast-card :is(.card-item, .icon-wrapper) {
+  display: flex;
+  align-items: center;
+}
+
+.forecast-card {
+  text-align: center;
+}
+
+.forecast-card :is(.card-item, .icon-wrapper, .label-1,  .title-2) {
+
+  display: inline-block;
+  margin-right: 15px;
+  width: calc(20% - 20px);
+
+}
+
+.forecast-card .card-item:not(:last-child) {
+  margin-block-end: 12px; /*Kutunun altındaki boşluk*/
+}
+
+.forecast-card .icon-wrapper {
+  gap: 8px;
+  
+}
+
+.forecast-card .label-1 {
+  color: #7F7F98;
+  font-weight: var(--weight-semiBold);
+}
+
+.forecast-card .card-item > .label-1 {
+  width: 100%;
+  text-align: center;
 }

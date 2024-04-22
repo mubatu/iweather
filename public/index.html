@@ -19,9 +19,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
   
-    <!-- Custom JS links -->
+    <!-- Custom JS links and Icons -->
     <script src="../src/App.js" type="module"></script>
     <script src="../src/route.js" type="module"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+      .green {
+          display: none;
+      }
+      .gray {
+        color: #7F7F98;
+      }
+    </style>
+
   </head>
   <body>
     
@@ -31,11 +42,230 @@
 
         <a href="#" class="logo">
           <img src="./logo-horizontal.svg" width="364" height="58" alt="logo-horizontal">
-        </a>
+        </a> 
+        
+        <p class="great-title"><span class="first-word">Welcome to </span><span class="second-word">TypeWeather</span></p>
+        <p class="small-title">Choose a location to see the weather forecast</p>
 
+        <div class="search-view" data-search-view>
+
+          <div class="search-wrapper">
+            <input type="search" name="" placeholder="Search location"
+            autocomplete="off" class="search-field" 
+            data-search-field>
+
+            <i class="ph ph-magnifying-glass green"></i>
+
+            <button class="icon-btn leading-icon has-state"
+            aria-label="close search" data-search-taggler>
+              <i class="ph ph-arrow-left"></i>
+            </button>
+          </div>
+
+
+          <div class="search-result" data-search-result>
+            <ul class="view-list" data-search-list>
+              <li class="view-item">
+    
+                <i class="ph ph-map-pin gray"></i>
+    
+                <div>
+                  <p class="item-title">Istanbul</p>
+                  <p class="label-2 item-subtitle">State of Istanbul, TR</p>
+                </div>
+      
+                <a href="#" class="item-link has-state" data-search-taggler></a>
+                    
+              </li>
+      
+            </ul>
+      
+          </div>
+  
+
+        </div>
+
+        <div class="header-actions">
+
+          <button class="icon-btn has-state"
+          aria-label="open search" data-search-taggler>
+
+            <i class="ph ph-magnifying-glass"></i>
+          </button>
+
+          <a href="#/current-location" class="btn-primary has-state"
+          data-current-location-btn disabled>
+          <i class="ph ph-gps-fix"></i>
+          <span class="span">Current Location</span>
+          </a>
+  
+        </div> 
+   
       </div>
 
     </header>
+
+    <main>
+      <article class="container">
+        <div class="content-left">
+          <!-- Current Weather -->
+
+          <section class="section current-weather"
+          aria-label="current weather" data-current-weather>
+        
+            <div class="card card-lg current-weather-card">
+              
+              <h2 class="title-2 card-title">Now</h2>
+
+              <div class="weapper">
+                <p class="heading">25&deg;<sup>c</sup></p>
+
+                <img src="./Weather=Clear, Moment=Day.svg"
+                width="64" height="64" alt="Overcast Clouds"
+                class="weather-icon">
+              </div>
+              
+              <p class="body-3">Overcast Clouds</p>
+
+              <ul class="meta-list">
+                <li class="meta-item">
+                  <i class="ph ph-calendar"></i>
+
+                  <p class="title-3 meta-text">Sat 16, July </p>
+                </li>
+
+                <li class="meta-item">
+                  <i class="ph ph-map-pin"></i>
+
+                  <p class="title-3 meta-text">Istanbul, TR</p>
+                </li>
+              </ul>
+
+            </div>
+        
+          </section>
+          
+          <section class="section forecast"
+          aria-labelledby="forecast-label" data-5-day-forecast>
+          
+          <h2 class="title-2" id="forecast-label">5 Days Forecast</h2>
+
+          <div class="card card-lg forecast-card">
+            <ul>
+              <li class="card-item">
+                <div class="icon-wrapper">
+                  <img src="./Weather=Clear, Moment=Night.svg"
+                  width="36" height="36" alt="Overcast Clouds"
+                  class="weather-icon">
+
+                  <span class="span">
+                    <p class="title-2">25</p>
+                  </span>
+                </div>
+
+                <p class="label-1">Sunday</p>
+              </li>
+              <li class="card-item">
+                <div class="icon-wrapper">
+                  <img src="./Weather=Clear, Moment=Night.svg"
+                  width="36" height="36" alt="Overcast Clouds"
+                  class="weather-icon">
+
+                  <span class="span">
+                    <p class="title-2">25</p>
+                  </span>
+                </div>
+
+                <p class="label-1">Sunday</p>
+              </li>
+              <li class="card-item">
+                <div class="icon-wrapper">
+                  <img src="./Weather=Clear, Moment=Night.svg"
+                  width="36" height="36" alt="Overcast Clouds"
+                  class="weather-icon">
+
+                  <span class="span">
+                    <p class="title-2">25</p>
+                  </span>
+                </div>
+
+                <p class="label-1">Sunday</p>
+              </li>
+              <li class="card-item">
+                <div class="icon-wrapper">
+                  <img src="./Weather=Clear, Moment=Night.svg"
+                  width="36" height="36" alt="Overcast Clouds"
+                  class="weather-icon">
+
+                  <span class="span">
+                    <p class="title-2">25</p>
+                  </span>
+                </div>
+
+                <p class="label-1">Sunday</p>
+              </li>
+              <li class="card-item">
+                <div class="icon-wrapper">
+                  <img src="./Weather=Clear, Moment=Night.svg"
+                  width="36" height="36" alt="Overcast Clouds"
+                  class="weather-icon">
+
+                  <span class="span">
+                    <p class="title-2">25</p>
+                  </span>
+                </div>
+
+                <p class="label-1">Sunday</p>
+              </li>
+
+            </ul>
+
+          </div>
+          </section>
+
+        </div>
+
+        <div class="content-right">
+          <section class="section highlights"
+          aria-labelledby="highlights-label" data-highlights>
+
+            <div class="card card-lg">
+              <h2 class="title-2" id="highlights-label">Todays Highlights</h2>
+              
+              <div class="highlights-list">
+
+                <div class="card card-sm highlight-card one">
+
+                  <h3 class="title-3">Thermal sensation</h3>
+
+                  <div class="wrapper">
+                    <i class="ph-light ph-thermometer-simple"></i>
+
+                    <ul class="card-list">
+
+                      <li class="card-item">
+
+                        <p class="title-1">26</p>
+                        <p class="label-1">&deg; <sub>C</sub></p>
+                      </li>
+                    </ul>
+
+
+                  <span class="badge aqi-1 label-1" title=""></span>  
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+
+      </article>
+    </main>
+
+
 
   </body>
 
